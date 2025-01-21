@@ -26,12 +26,13 @@ mongoose.set("strictQuery", false);
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URL);
-    console.log("MongoDb databse is connected.");
+    console.log("✅ MongoDb database is connected.");
   } catch (err) {
-    console.log("MongoDb databse connection failed.");
+    console.log("❌ MongoDb database connection failed.");
+    console.log(err.message);
 
   }
-};
+};      
 
 // middleware
 app.use(express.json());
@@ -45,5 +46,5 @@ app.use("/api/v1/bookings", bookingRoute);
 
 app.listen(port, () => {
   connectDB();
-  console.log("Server is running on port" + port);
+  console.log("✅ Server is running on port" + port);
 });
